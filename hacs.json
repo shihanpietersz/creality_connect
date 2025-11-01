@@ -1,8 +1,5 @@
 {
   "name": "Creality Connect",
-  "render_readme": true,
   "content_in_root": false,
-  "homeassistant": "2023.1.0",
-  "zip_release": false,
-  "filename": ""
+  "homeassistant": "2023.1.0"
 }
