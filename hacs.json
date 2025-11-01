@@ -1,9 +1,7 @@
 {
   "name": "Creality Connect",
-  "content_in_root": false,
+  "content_in_root": true,
   "render_readme": true,
   "zip_release": true,
   "filename": "creality_connect.zip"
 }
-
-
