@@ -22,13 +22,13 @@ Before you begin, ensure you have:
 #### Step 1: Download the Integration
 
 **Option A: Download from GitHub Releases**
-1. Go to [Releases](https://github.com/yourusername/creality-connect/releases)
+1. Go to [Releases](https://github.com/shihanpietersz/creality_connect/releases)
 2. Download the latest `creality_connect.zip`
 3. Extract the ZIP file
 
 **Option B: Clone the Repository**
 ```bash
-git clone https://github.com/yourusername/creality-connect.git
+git clone https://github.com/shihanpietersz/creality_connect.git
 ```
 
 #### Step 2: Copy Files to Home Assistant
@@ -397,7 +397,7 @@ All entities and devices will be removed.
 
 If you're still having issues:
 
-1. **Check existing issues:** [GitHub Issues](https://github.com/yourusername/creality-connect/issues)
+1. **Check existing issues:** [GitHub Issues](https://github.com/shihanpietersz/creality_connect/issues)
 2. **Create a new issue:** Include:
    - Home Assistant version
    - Printer model

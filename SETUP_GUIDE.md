@@ -1,8 +1,8 @@
-# Creality K1 Max Home Assistant Integration - Setup Guide
+# Creality Connect Home Assistant Integration - Setup Guide
 
 ## 🎉 **Your Integration is Ready!**
 
-I've created a **complete Home Assistant custom integration** for your Creality K1 Max printer with all the features from your React app and more!
+I've created a **complete Home Assistant custom integration** for your Creality printer with all the features from your React app and more!
 
 ---
 
@@ -10,7 +10,7 @@ I've created a **complete Home Assistant custom integration** for your Creality 
 
 ### Core Files
 ```
-creality_k1_max/
+creality_connect/
 ├── __init__.py          ✅ Main integration setup with WebSocket
 ├── manifest.json        ✅ Integration metadata
 ├── config_flow.py       ✅ Easy setup UI
@@ -21,7 +21,7 @@ creality_k1_max/
 
 ### Platform Files (Entities)
 ```
-├── sensor.py           ✅ 18 sensors (temps, position, progress, fans, layers)
+├── sensor.py           ✅ 20+ sensors (temps, position, progress, fans, layers)
 ├── binary_sensor.py    ✅ 3 binary sensors (printing, paused, light)
 ├── switch.py           ✅ 2 switches (LED light, pause/resume)
 ├── number.py           ✅ 5 number controls (fan speeds, temps)
@@ -43,13 +43,13 @@ creality_k1_max/
 
 ### Step 1: Copy to Home Assistant
 
-**Copy the entire `creality_k1_max` folder to:**
+**Copy the entire `creality_connect` folder to:**
 ```
-/config/custom_components/creality_k1_max/
+/config/custom_components/creality_connect/
 ```
 
 **Methods:**
-- **SSH/Terminal**: `cp -r creality_k1_max /config/custom_components/`
+- **SSH/Terminal**: `cp -r creality_connect /config/custom_components/`
 - **Samba/File Share**: Drag and drop the folder
 - **VS Code**: Use the Home Assistant File Editor addon
 
@@ -110,25 +110,25 @@ cards:
   - type: entities
     title: Printer Status
     entities:
-      - sensor.creality_k1_max_printer_state
-      - sensor.creality_k1_max_current_file
-      - sensor.creality_k1_max_print_progress
-      - sensor.creality_k1_max_print_duration
+      - sensor.creality_printer_state
+      - sensor.creality_printer_current_file
+      - sensor.creality_printer_print_progress
+      - sensor.creality_printer_print_duration
   
   # Webcam
   - type: picture-entity
-    entity: camera.creality_k1_max_webcam
-    camera_image: camera.creality_k1_max_webcam
+    entity: camera.creality_printer_webcam
+    camera_image: camera.creality_printer_webcam
   
   # Temperatures
   - type: horizontal-stack
     cards:
       - type: gauge
-        entity: sensor.creality_k1_max_nozzle_temperature
+        entity: sensor.creality_printer_nozzle_temperature
         min: 0
         max: 300
       - type: gauge
-        entity: sensor.creality_k1_max_bed_temperature
+        entity: sensor.creality_printer_bed_temperature
         min: 0
         max: 120
   
@@ -136,10 +136,10 @@ cards:
   - type: entities
     title: Controls
     entities:
-      - switch.creality_k1_max_led_light
-      - number.creality_k1_max_model_fan_speed
-      - number.creality_k1_max_case_fan_speed
-      - button.creality_k1_max_cancel_print
+      - switch.creality_printer_led_light
+      - number.creality_printer_model_fan_speed
+      - number.creality_printer_case_fan_speed
+      - button.creality_printer_cancel_print
 ```
 
 ---
@@ -152,12 +152,12 @@ automation:
   - alias: "Turn on LED when printing starts"
     trigger:
       - platform: state
-        entity_id: binary_sensor.creality_k1_max_printing
+        entity_id: binary_sensor.creality_printer_printing
         to: "on"
     action:
       - service: switch.turn_on
         target:
-          entity_id: switch.creality_k1_max_led_light
+          entity_id: switch.creality_printer_led_light
 ```
 
 ### Print Complete Notification
@@ -166,12 +166,12 @@ automation:
   - alias: "Notify when print completes"
     trigger:
       - platform: state
-        entity_id: sensor.creality_k1_max_printer_state
+        entity_id: sensor.creality_printer_printer_state
         to: "complete"
     action:
       - service: notify.mobile_app
         data:
-          message: "Print finished: {{ states('sensor.creality_k1_max_current_file') }}"
+          message: "Print finished: {{ states('sensor.creality_printer_current_file') }}"
 ```
 
 ### Smart Fan Control
@@ -180,12 +180,12 @@ automation:
   - alias: "Adjust case fan based on bed temp"
     trigger:
       - platform: numeric_state
-        entity_id: sensor.creality_k1_max_bed_temperature
+        entity_id: sensor.creality_printer_bed_temperature
         above: 60
     action:
       - service: number.set_value
         target:
-          entity_id: number.creality_k1_max_case_fan_speed
+          entity_id: number.creality_printer_case_fan_speed
         data:
           value: 80
 ```
@@ -260,7 +260,7 @@ automation:
    ```yaml
    logger:
      logs:
-       custom_components.creality_k1_max: debug
+       custom_components.creality_connect: debug
    ```
 3. Check Home Assistant logs: **Settings** → **System** → **Logs**
 4. Open an issue on GitHub (when published)

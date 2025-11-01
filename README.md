@@ -223,8 +223,8 @@ This project is licensed under the MIT License.
 
 ## 📧 Support
 
-- **Issues**: [GitHub Issues](https://github.com/yourusername/creality-connect/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/creality-connect/discussions)
+- **Issues**: [GitHub Issues](https://github.com/shihanpietersz/creality_connect/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/shihanpietersz/creality_connect/discussions)
 - **Home Assistant Community**: [Community Forum](https://community.home-assistant.io/)
 
 ---
