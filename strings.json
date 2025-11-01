@@ -1,0 +1,23 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Set up Creality Printer",
+        "description": "Enter the IP address of your Creality printer running Moonraker/Klipper.",
+        "data": {
+          "host": "Host (IP Address)",
+          "port": "HTTP Port",
+          "ws_port": "WebSocket Port"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to the printer. Please check the IP address and ensure the printer is online.",
+      "unknown": "Unexpected error occurred"
+    },
+    "abort": {
+      "already_configured": "This printer is already configured"
+    }
+  }
+}
+
